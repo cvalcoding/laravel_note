@@ -12,3 +12,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/register', [AuthController::class, 'registerView'])->name('registerView');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+});

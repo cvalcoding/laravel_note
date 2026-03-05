@@ -42,8 +42,6 @@ ul li a:hover {
     background-color: #111111;
 }
 
-
-
 input:not([type="submit"]) {
     width: 100%;
     padding: 12px;

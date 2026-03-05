@@ -8,6 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+use function Illuminate\Support\days;
+use function Symfony\Component\Clock\now;
+
 class AuthController extends Controller
 {
     /**
@@ -28,10 +31,10 @@ class AuthController extends Controller
         if (Auth::attempt($request->validated())) {
             $user = User::where('email', '=', $request['email'])->firstOrFail();
             $user->tokens()->delete();
-            $user->createToken('auth_token', ['note:gestion']);
+            $user->createToken('auth_token', ['note:gestion'], now()->add(days(1)));
             return redirect('/', 201)->with('success', 'Logged in');
         }
-        return redirect('/register', 401)->with('error', 'User not found');
+        return redirect('/login', 301)->with('error', 'User not found');
     }
 
     /**
@@ -43,11 +46,26 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    /**
+     * register request
+     * @param AuthRequest $request
+     * @return RedirectResponse
+     */
     public function register(AuthRequest $request): RedirectResponse
     {
         $user = User::create($request->validated());
-        $token = $user->createToken('auth_user');
+        $user->createToken('auth_token', ['note:gestion'], now()->add(days(1)));
 
         return redirect('/', 201)->with('success', 'User created');
+    }
+
+    /**
+     * User profile
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function profile(): View
+    {
+        $user = Auth::user();
+        return view('auth.profile', ['user' => $user]);
     }
 }
