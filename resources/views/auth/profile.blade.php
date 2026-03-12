@@ -7,5 +7,6 @@
         <h1>Login</h1>
         <p><b>Name</b> : {{ $user->name }}</p>
         <p><b>Email</b> : {{ $user->email }}</p>
+        <p><b>Token</b> : {{ $user->tokens }}</p>
     </div>
 @endsection

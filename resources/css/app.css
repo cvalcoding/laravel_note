@@ -118,6 +118,20 @@
 }
 
 .navbar .navbar-auth button {
-    background-color: #4CAF50;
-    float: right;
+    display: inline;
+    border: 0;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    color: currentColor;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+
+    -webkit-appearance: none;
+}
+
+.navbar .navbar-auth button:hover {
+    background-color: #111111;
 }
