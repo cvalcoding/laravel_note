@@ -6,6 +6,7 @@ use App\Http\Requests\AuthRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\View;
 
 use function Illuminate\Support\days;
@@ -34,7 +35,7 @@ class AuthController extends Controller
             $user->createToken('auth_token', ['note:gestion'], now()->add(days(1)));
             return redirect('/', 201)->with('success', 'Logged in');
         }
-        return redirect('/login', 301)->with('error', 'User not found');
+        return redirect()->back()->with('error', 'User not found');
     }
 
     /**
@@ -67,5 +68,18 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         return view('auth.profile', ['user' => $user]);
+    }
+
+    /**
+     * Summary of logout
+     * @param Request $request
+     * @return 
+     */
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+        $user->tokens()->delete();
+
+        return redirect('/')->with('success', 'User created');
     }
 }

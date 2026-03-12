@@ -3,22 +3,49 @@
 @section('title', 'login')
 
 @section('content')
-    <h1>Login</h1>
-    <div class="center">
+    <div class="form-block center">
+        <h1 class="text-center">Login</h1>
+        @if(Session::has('error'))
+            <div class="alert-danger">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ Session::get('error') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert-danger">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <span>Error was found</span>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Email" name="email" />
+                <div class="mb">
+                    <label for="email"><b>Email</b></label>
+                    <input class="form-input @error('email') form-error @enderror" type="text" placeholder="Email" name="email" id="email" />
+                    @error('email')
+                        <span class="text-error">{{ $message }}</span>
+                    @enderror
+                </div>
 
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Password" name="password" />
-
+                <div class="mb">
+                    <label for="password"><b>Password</b></label>
+                    <input class="form-input @error('password') form-error @enderror" type="password" placeholder="Password" name="password" id="password" />
+                    @error('password')
+                        <span class="text-error">{{ $message }}</span>
+                    @enderror
+                </div>
+                
                 <div class="center">
-                    <button type="submit">Valider</button>
+                    <button class="submit-button center" type="submit">Valider</button>
                 </div>
             </div>
         </form>
     </div>
-    
 @endsection

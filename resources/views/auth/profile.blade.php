@@ -3,11 +3,9 @@
 @section('title', 'profile')
 
 @section('content')
-    <h1>Login</h1>
-    <div class="center">
-        <div class="container">
-            <p> <b>Name</b> : {{ $user->name }}</p>
-            <p> <b>Email</b> : {{ $user->email }}</p>
-        </div>
+    <div class="center" style="width: 250px">
+        <h1>Login</h1>
+        <p><b>Name</b> : {{ $user->name }}</p>
+        <p><b>Email</b> : {{ $user->email }}</p>
     </div>
 @endsection
