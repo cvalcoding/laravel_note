@@ -4,6 +4,7 @@
         <li><a href="{{ route('about') }}">About</a></li>
         <div class="navbar-auth">
             @if(Auth::check())
+                <li><a href="{{ route('notes.index') }}">Note</a></li>
                 <li><a href="{{ route('profile') }}">Profile</a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="post">

@@ -61,7 +61,7 @@
 }
 
 /**
-    Formulaire
+    Form
 */
 
 .form-input {
@@ -69,6 +69,14 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.content-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 200px;
 }
 
 .form-error {
@@ -134,4 +142,70 @@
 
 .navbar .navbar-auth button:hover {
     background-color: #111111;
+}
+
+/** table  */
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid black;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px;
+    border: 1px solid black;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/** Button */
+
+.btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    cursor: pointer;
+}
+
+/* Blue */
+.info {
+    background-color: #2196F3;
+}
+
+.info:hover {
+    background: #0b7dda;
+}
+
+/* Green */
+.success {
+    background-color: #04AA6D;
+}
+
+.success:hover {
+    background-color: #46a049;
+}
+
+/* Gray */
+.default {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.default:hover {
+    background: #ddd;
+}
+
+/* Red */
+.danger {
+    background-color: #f44336;
+}
+
+.danger:hover {
+    background: #da190b;
 }
